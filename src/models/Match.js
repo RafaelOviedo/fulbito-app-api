@@ -6,8 +6,7 @@ const matchSchema = new Schema({
   date: { type: Date, required: true, minLength: 3 },
   alias: { type: String, required: true, minLength: 3 },
   players: [
-    { 
-      // id: { type: Schema.Types.ObjectId, default: new mongoose.Types.ObjectId, required: true },
+    {
       name: { type: String, required: true },
       payment: { type: Boolean },
       voucher: { type: Buffer }

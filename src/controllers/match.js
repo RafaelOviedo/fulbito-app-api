@@ -25,7 +25,16 @@ const Match = {
     await match.save()
     res.status(204).send(match);
   },
-  
+
+  createMatchPlayer: async (req, res) => {
+    const { id } = req.params;
+    const match = await Matches.findOne({ _id: id })
+    const players = match.players;
+    players.push(req.body);
+    await match.save()
+    res.status(201).send(match);
+  },
+
   updateMatchPlayer: async (req, res) => {
     const { id, playerId } = req.params
     const match = await Matches.findOne({ _id: id })
@@ -48,6 +57,16 @@ const Match = {
     } catch (error) {
       res.status(500).json({ error: 'Internal server error' });
     }
+  },
+
+  destroyMatchPlayer: async (req, res) => {
+    const { id, playerId } = req.params;
+    const match = await Matches.findOne({ _id: id })
+
+    // return the list of players without the one you're looking to delete
+    match.players = match.players.filter((player) => player._id.toString() !== playerId)
+    await match.save()
+    res.status(204).send(match);
   }
 }
 
