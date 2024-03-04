@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const matchSchema = new Schema({
   location: { type: String, required: true, minLength: 3 },
-  date: { type: Date, required: true, minLength: 3 },
+  date: { type: String, required: true, minLength: 3 },
   alias: { type: String, required: true, minLength: 3 },
   players: [
     {
