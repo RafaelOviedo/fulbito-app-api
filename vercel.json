@@ -19,7 +19,7 @@
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "https://fulbito-app-indol.vercel.app" }
+        { "key": "Access-Control-Allow-Origin", "value": "https://fulbito-app-oby3rwa1p-rafaeloviedo.vercel.app/" }
       ]
     }
   ]
