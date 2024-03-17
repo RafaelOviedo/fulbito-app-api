@@ -36,11 +36,18 @@ const Match = {
   },
 
   updateMatchPlayer: async (req, res) => {
-    const { id, playerId } = req.params
-    const match = await Matches.findOne({ _id: id })
-    const player = match.players.find((player) => player._id.toString() === playerId)
-    Object.assign(player, req.body)
-    await match.save()
+    const { id, playerId } = req.params;
+    const match = await Matches.findOne({ _id: id });
+    let player = match.players.find((player) => player._id.toString() === playerId);
+    
+    const data = {
+      name: player.name,
+      payment: true,
+      voucher: req.file.buffer,
+    };
+    
+    Object.assign(player, data);
+    await match.save();
     res.status(204).send(match);
   },
 
