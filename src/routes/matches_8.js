@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const match = require("../controllers/match");
+const match = require("../controllers/match_8");
 const multer = require('multer');
 const upload = multer();
 
