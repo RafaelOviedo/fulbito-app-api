@@ -10,10 +10,10 @@ const second_port = 8080;
 dotenv.config();
 
 // PRODUCTION CLUSTER
-// mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.gcgueba.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
+mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.gcgueba.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
 
 // DEVELOPMENT (TESTING) CLUSTER
-mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster1.2u0cwi1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`);
+// mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster1.2u0cwi1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`);
 
 app.use(cors());
 app.use(express.json())
