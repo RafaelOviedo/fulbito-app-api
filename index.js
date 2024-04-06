@@ -4,7 +4,8 @@ const routes = require('./src/routes/index');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const app = express();
-const port = 3001;
+// const port = 3001;
+const second_port = 8080;
 
 dotenv.config();
 
@@ -19,8 +20,8 @@ app.use(express.json())
 
 app.use('/', routes);
 
-app.listen(port, () => {
-  console.log('running on port 3001');
+app.listen(second_port, () => {
+  console.log('running on port 8080');
 })
  
 module.exports = app;
