@@ -9,6 +9,8 @@ const second_port = 8080;
 
 dotenv.config();
 
+process.setMaxListeners(15);
+
 // PRODUCTION CLUSTER
 mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.gcgueba.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
 
