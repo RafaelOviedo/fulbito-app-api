@@ -9,7 +9,7 @@ const matchSchema = new Schema({
     {
       name: { type: String, required: true },
       payment: { type: Boolean },
-      voucher: { type: Buffer }
+      voucher: { type: String }
     }
   ],
 })

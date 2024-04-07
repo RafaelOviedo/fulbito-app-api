@@ -1,4 +1,5 @@
 const Matches = require('../models/Match_5');
+const cloudinary = require('cloudinary').v2;
 
 const Match = {
   getAllMatches: async (req, res) => {
@@ -39,16 +40,25 @@ const Match = {
     const { id, playerId } = req.params;
     const match = await Matches.findOne({ _id: id });
     let player = match.players.find((player) => player._id.toString() === playerId);
-    
-    const data = {
-      name: player.name,
-      payment: true,
-      voucher: req.file.buffer,
-    };
-    
-    Object.assign(player, data);
-    await match.save();
-    res.status(204).send(match);
+
+    cloudinary.uploader.upload_stream({ resource_type: "raw" }, async (error, result) => {
+      if (error) {
+          console.error('Error uploading to Cloudinary:', error);
+          return res.status(500).send({ error: 'Error uploading image to Cloudinary' });
+      }
+      
+      const data = {
+        name: player.name,
+        payment: true,
+        voucher: result.secure_url,
+      };
+
+      Object.assign(player, data);
+
+      await match.save();
+      res.status(204).send(match);
+
+    }).end(req.file.buffer);
   },
 
   destroyMatch: async (req, res) => {

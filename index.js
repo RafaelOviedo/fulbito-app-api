@@ -5,11 +5,15 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const app = express();
 const port = 3001;
-// const second_port = 8080;
+const cloudinary = require('cloudinary').v2;
 
 dotenv.config();
 
-process.setMaxListeners(15);
+cloudinary.config({ 
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // PRODUCTION CLUSTER
 mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.gcgueba.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
